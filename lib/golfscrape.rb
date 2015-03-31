@@ -16,3 +16,4 @@ module Golfscrape
 end
 
 require File.join(directory, 'golfscrape', 'client')
+require File.join(directory, 'golfscrape', 'leaderboard')

@@ -7,8 +7,25 @@ describe Golfscrape::Client do
     it "should return leaderboard" do
       @client = Golfscrape::Client.new
       @leaderboard = @client.leaderboard
-      @leaderboard.last.name.should match /\S+/
-      @leaderboard.size.should_not == 0
+      @leaderboard.results.last.name.should match /\S+/
+      @leaderboard.results.size.should_not == 0
+    end
+
+    it "should return tournament details" do
+      client = Golfscrape::Client.new
+      leaderboard = client.leaderboard
+      tournament = leaderboard.tournament
+      string = "Valero Texas Open (Mar 26 - 29)"
+      string.chars.each_with_index do |c, i|
+        if c != tournament.name[i]
+          puts '----'
+          puts c.ord
+          puts tournament.name[i].ord
+        end 
+        
+      end
+      expect(tournament.par).to eq 72
+      expect(tournament.name).to eq "Valero Texas Open (Mar 26 - 29)"
     end
   end
   
